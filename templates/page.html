@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article>
+  <h1 class="title">
+    {{ page.title }}
+  </h1>
+  <p class="subtitle">
+    {% if page.updated %}
+      <strong>{{ page.updated }}</strong>
+      <em>({{ page.date }})</em>
+    {% else %}
+      <strong>{{ page.date }}</strong>
+    {% endif %}
+    {% for tag in page.taxonomies.tags %}
+    <a href="{{ get_url(path='tags/') ~ '/' ~ tag }}">#{{ tag }}</a>
+    {% endfor %}
+  </p>
+  {{ page.content | safe }}
+</article>
+
+{% if page.backlinks %}
+<aside id="backlinks">
+  <h1>Backlinks ({{ page.backlinks | length }}) </h1>
+  <ul>
+    {% for bl in page.backlinks %}
+    <li><a href="{{ bl.permalink }}">{{ bl.title }}</a></li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}
+{% endblock content %}

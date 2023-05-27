@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block content %}
+<h1>{{ taxonomy.name }}: #{{ term.name }} ({{ term.page_count }})</h1>
+{{ macros::calview(posts=term.pages) }}
+{% endblock %}

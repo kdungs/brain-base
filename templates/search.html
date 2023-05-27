@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Search</h1>
+
+<form id="searchForm">
+    <input type="text" id="searchText" placeholder="keyword">
+    <input type="submit" value="Search!">
+</form>
+
+<div id="searchResults">
+</div>
+
+<script src="{{ get_url(path='elasticlunr.min.js') }}"></script>
+<script src="{{ get_url(path='search_index.en.js') }}"></script>
+<script src="{{ get_url(path='search.js') }}"></script>
+{% endblock %}

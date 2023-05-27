@@ -1,0 +1,21 @@
+{% macro calview(posts) %}
+<section class="calendar">
+    {% for year, posts in posts | sort(attribute="year") | reverse | group_by(attribute="year") %}
+    <h1>{{ year }}</h1>
+    {% for month, posts in posts | sort(attribute="month") | reverse | group_by(attribute="month") %}
+    <h2>{{ month }}</h2>
+    {% for day, posts in posts | sort(attribute="day") | reverse | group_by(attribute="day") %}
+    <h3>{{ day }}</h3>
+    <ul>
+        {% for post in posts %}
+        <li>
+          <a href="{{ post.permalink }}">{{ post.title }}</a>
+          {% if post.backlinks %}({{ post.backlinks | length }}){% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+    {% endfor %}
+    {% endfor %}
+</section>
+{% endmacro calview %}
