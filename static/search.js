@@ -43,13 +43,10 @@ function showResults(el, results) {
     let elRes = document.getElementById("searchResults");
     let idx = elasticlunr.Index.load(searchIndex);
 
-    let search = (term) => {
-        let res = idx.search(term, SEARCH_OPTIONS);
-        showResults(elRes, res);
-    }
-
     elForm.addEventListener("submit", (evt) => {
-        search(elText.value);
+        const term = elText.value;
+        const res = idx.search(term, SEARCH_OPTIONS);
+        showResults(elRes, res);
         evt.preventDefault();
     });
 })();
